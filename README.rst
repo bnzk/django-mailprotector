@@ -6,7 +6,7 @@ A reusable Django app that protects email addresses, in various ways.
 Installation
 ------------
 
-To get the latest stable release from PyPi
+To get the latest stable release from PyPi (not yet!)
 
 .. code-block:: bash
 
@@ -29,27 +29,13 @@ Add ``mailprotector`` to your ``INSTALLED_APPS``
         'mailprotector',
     )
 
-Add the ``mailprotector`` URLs to your ``urls.py``
-
-.. code-block:: python
-
-    urlpatterns = patterns('',
-        ...
-        url(r'^none/', include('mailprotector.urls')),
-    )
-
 Before your tags/filters are available in your templates, load them by using
 
 .. code-block:: html
 
 	{% load mailprotector_tags %}
+	{% 'your@domain.com'|mailprotect:'May this be the link text?' %}
 
-
-Don't forget to migrate your database
-
-.. code-block:: bash
-
-    ./manage.py migrate mailprotector
 
 
 Usage
