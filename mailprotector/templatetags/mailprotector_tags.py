@@ -10,7 +10,9 @@ from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
 import re
 
+
 register = template.Library()
+
 
 @register.filter()
 @stringfilter
