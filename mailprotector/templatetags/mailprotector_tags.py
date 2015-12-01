@@ -41,9 +41,9 @@ def mailprotector(email, *args, **kwargs):
                 document.getElementById('%s').innerHTML = content;
                 -->
                 </script>""" % (the_id,
-                                css_class,
                                 re.sub(r',$', '', emailArrayContent),
                                 re.sub(r',$', '', textArrayContent),
+                                css_class,
                                 the_id,)
 
     return mark_safe(result)
