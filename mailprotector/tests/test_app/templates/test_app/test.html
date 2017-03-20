@@ -1,0 +1,11 @@
+{% load mailprotector_tags %}
+
+1. only email: {% mailprotector 'bnzk@bnzk.ch' %}
+<br>
+2. link text: {% mailprotector 'bnzk@bnzk.ch' link_text='link text special' %}
+<br>
+3. with class: {% mailprotector 'bnzk@bnzk.ch' link_text='link text, with css class' css_class='dummy_class' %}
+<br>
+{% mailprotector_textblock "some bigger piece of shit@the-hole.com whatever" css_class='testing' %}
+<br>
+{% mailprotector_textblock 'some bigger piece of <a href="mailto:shit@the-hole.com" data-test="test">lbbbbbbb</a> whatever' css_class='testing2' %}
