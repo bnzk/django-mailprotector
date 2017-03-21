@@ -1,7 +1,7 @@
 Django Mailprotector
 ============
 
-A reusable Django app that protects email addresses, in various ways.
+A reusable Django app that protects email addresses, in various ways. Django 1.8+, no dependencies.
 
 Installation
 ------------
@@ -16,9 +16,7 @@ To get the latest commit from GitHub
 
 .. code-block:: bash
 
-    pip install -e git+git://github.com/benzkji/django-mailprotector.git#egg=mailprotector
-
-TODO: Describe further installation steps (edit / remove the examples below):
+    pip install -e git+git://github.com/bnzk/django-mailprotector.git#egg=mailprotector
 
 Add ``mailprotector`` to your ``INSTALLED_APPS``
 
