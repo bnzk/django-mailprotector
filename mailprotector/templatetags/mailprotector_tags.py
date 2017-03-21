@@ -16,7 +16,7 @@ register = template.Library()
 
 
 email_pattern_uncompiled = r'\b[-.\w]+@[-.\w]+\.[a-z]{2,6}\b'
-email_link_pattern = re.compile(r'<a\s+href=("|\')?mailto:(' + email_pattern_uncompiled + ')[^>]*>([^<]*)</a>')
+email_link_pattern = re.compile(r'<a[^>]*href=("|\')?mailto:(' + email_pattern_uncompiled + ')[^>]*>([^<]*)</a>')
 email_pattern  = re.compile(r'(' + email_pattern_uncompiled + r')')
 
 
