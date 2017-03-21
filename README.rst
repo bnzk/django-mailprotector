@@ -48,7 +48,7 @@ Or as text block, for example from a rich text editor:
 
 .. code-block:: html
 
-	{% mailprotector object.richtext css_class='stylish' %}
+	{% mailprotector_textblock object.richtext css_class='stylish' %}
 
 
 Contribute
