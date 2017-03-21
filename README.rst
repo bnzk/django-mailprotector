@@ -29,20 +29,28 @@ Add ``mailprotector`` to your ``INSTALLED_APPS``
         'mailprotector',
     )
 
+
+Usage
+-----
+
 Before your tags/filters are available in your templates, load them by using
 
 .. code-block:: html
 
 	{% load mailprotector_tags %}
-	{% 'your@domain.com'|mailprotect:'May this be the link text?' %}
 
 
+Then either email address after email address:
 
-Usage
------
+.. code-block:: html
 
-TODO: Describe usage or point to docs. Also describe available settings and
-templatetags.
+	{% mailprotector 'your@domain.com' link_text='this link text?' css_class='stylish' %}
+
+Or as text block, for example from a rich text editor:
+
+.. code-block:: html
+
+	{% mailprotector object.richtext css_class='stylish' %}
 
 
 Contribute
