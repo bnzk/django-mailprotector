@@ -28,9 +28,27 @@ STATICFILES_DIRS = (
     os.path.join(APP_ROOT, 'static'),
 )
 
-TEMPLATE_DIRS = (
-    os.path.join(APP_ROOT, 'tests/test_app/templates'),
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.request',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+            ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                # 'django.template.loaders.eggs.Loader',
+            ],
+        }
+    },
+]
 
 EXTERNAL_APPS = [
     'django.contrib.admin',
@@ -42,7 +60,7 @@ EXTERNAL_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
-    'django_nose',
+    # 'django_nose',
 ]
 
 INTERNAL_APPS = [
