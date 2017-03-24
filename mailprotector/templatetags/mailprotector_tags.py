@@ -1,4 +1,4 @@
-# based on http://djangosnippets.org/snippets/1284/
+
 # TODO: add other methods
 # TODO: add templatetag for html pieces
 
@@ -10,86 +10,43 @@ from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
 
+from mailprotector.utils import default as protector
 
 register = template.Library()
 
 
+email_pattern_uncompiled = r'\b[-.\w]+@[-.\w]+\.[a-z]{2,6}\b'
+email_link_pattern = re.compile(r'<a[^>]*href=("|\')?mailto:(' + email_pattern_uncompiled + ')[^>]*>([^<]*)</a>')
+email_pattern  = re.compile(r'(' + email_pattern_uncompiled + r')')
+
+
 @register.simple_tag
 def mailprotector(email, *args, **kwargs):
-
-    text = kwargs.get('link_text', email)
+    link_text = kwargs.get('link_text', email)
     css_class =  kwargs.get('css_class', '')
-
-    emailArrayContent = ''
-    textArrayContent = ''
-    r = lambda c: '"' + str(ord(c)) + '",'
-
-    for c in email: emailArrayContent += r(c)
-    for c in text: textArrayContent += r(c)
-
-    the_id = "_tyjsdfss-" + str(random.randint(1000, 999999999999999999))
-
-    # omit document.write to make it ajax safe!
-    result = """<span id='%s'></span><script language="javascript" type="text/javascript">
-                <!--
-                var _tyjsdf = [%s], _qplmks = [%s];
-                var content = ('<a class="%s" href="&#x6d;&#97;&#105;&#x6c;&#000116;&#111;&#x3a;');
-                for(_i=0;_i<_tyjsdf.length;_i++){ content += ('&#'+_tyjsdf[_i]+';');}
-                content += ('">');
-                for(_i=0;_i<_qplmks.length;_i++){ content += ('&#'+_qplmks[_i]+';');}
-                content += ('</a>');
-                document.getElementById('%s').innerHTML = content;
-                -->
-                </script>""" % (the_id,
-                                re.sub(r',$', '', emailArrayContent),
-                                re.sub(r',$', '', textArrayContent),
-                                css_class,
-                                the_id,)
-
+    result = protector.protect(email, link_text, css_class)
     return mark_safe(result)
 
 
-# deprecate?!
-@register.filter()
-@stringfilter
-def mailprotector_filter(email, text=None, autoescape=None):
-    text = text or email
-
-    if autoescape:
-        email = conditional_escape(email)
-        text = conditional_escape(text)
-
-    emailArrayContent = ''
-    textArrayContent = ''
-    r = lambda c: '"' + str(ord(c)) + '",'
-
-    for c in email: emailArrayContent += r(c)
-    for c in text: textArrayContent += r(c)
-
-    the_id = "_tyjsdfss-" + str(random.randint(1000, 999999999999999999))
-
-    # omit document.write to make it ajax safe!
-    result = """<span id='%s'></span><script language="javascript" type="text/javascript">
-                <!--
-                var _tyjsdf = [%s], _qplmks = [%s];
-                var content = ('<a href="&#x6d;&#97;&#105;&#x6c;&#000116;&#111;&#x3a;');
-                for(_i=0;_i<_tyjsdf.length;_i++){ content += ('&#'+_tyjsdf[_i]+';');}
-                content += ('">');
-                for(_i=0;_i<_qplmks.length;_i++){ content += ('&#'+_qplmks[_i]+';');}
-                content += ('</a>');
-                document.getElementById('%s').innerHTML = content;
-                -->
-                </script>""" % (the_id,
-                                re.sub(r',$', '', emailArrayContent),
-                                re.sub(r',$', '', textArrayContent),
-                                the_id,)
-
-    return mark_safe(result)
+# gogo: http://stackoverflow.com/questions/2864215/how-can-i-obfuscate-email-addresses-contained-in-free-input-text-fields-in-dja
+# and: http://stackoverflow.com/questions/26496119/passing-two-arguments-to-replace-function-for-re-sub
+@register.simple_tag
+def mailprotector_textblock(textblock, *args, **kwargs):
+    css_class =  kwargs.get('css_class', '')
+    # first, links
+    textblock = email_link_pattern.sub(lambda match: _protect_match(match, css_class), textblock)
+    # second, email only
+    textblock = email_pattern.sub(lambda match: _protect_match_simple(match, css_class), textblock)
+    return mark_safe(textblock)
 
 
+def _protect_match(match, css_class):
+    email = match.groups()[1]
+    link_text = match.groups()[2]
+    return protector.protect(email, link_text, css_class)
 
 
-
-mailprotector_filter.needs_autoescape = True
-
-
+def _protect_match_simple(match, css_class):
+    email = match.groups()[0]
+    link_text = email
+    return protector.protect(email, link_text, css_class)

@@ -1,7 +1,7 @@
 Django Mailprotector
 ============
 
-A reusable Django app that protects email addresses, in various ways.
+A reusable Django app that protects email addresses, in various ways. Django 1.8+, no dependencies.
 
 Installation
 ------------
@@ -16,9 +16,7 @@ To get the latest commit from GitHub
 
 .. code-block:: bash
 
-    pip install -e git+git://github.com/benzkji/django-mailprotector.git#egg=mailprotector
-
-TODO: Describe further installation steps (edit / remove the examples below):
+    pip install -e git+git://github.com/bnzk/django-mailprotector.git#egg=mailprotector
 
 Add ``mailprotector`` to your ``INSTALLED_APPS``
 
@@ -29,20 +27,28 @@ Add ``mailprotector`` to your ``INSTALLED_APPS``
         'mailprotector',
     )
 
+
+Usage
+-----
+
 Before your tags/filters are available in your templates, load them by using
 
 .. code-block:: html
 
 	{% load mailprotector_tags %}
-	{% 'your@domain.com'|mailprotect:'May this be the link text?' %}
 
 
+Then either email address after email address:
 
-Usage
------
+.. code-block:: html
 
-TODO: Describe usage or point to docs. Also describe available settings and
-templatetags.
+	{% mailprotector 'your@domain.com' link_text='this link text?' css_class='stylish' %}
+
+Or as text block, for example from a rich text editor:
+
+.. code-block:: html
+
+	{% mailprotector_textblock object.richtext css_class='stylish' %}
 
 
 Contribute
