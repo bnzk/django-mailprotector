@@ -63,9 +63,8 @@ If you want to contribute to this project, please perform the following steps
     # Fork this repository
     # Clone your fork
     mkvirtualenv -p python2.7 django-mailprotector
-    make develop
-
-    git co -b feature_branch master
+    pip install -r test_requirements.txt
+    git checkout -b feature_branch
     # Implement your feature and tests
     git add . && git commit
     git push -u origin feature_branch
