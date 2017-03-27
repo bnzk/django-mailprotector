@@ -4,7 +4,6 @@ Django Mailprotector
 .. image:: https://travis-ci.org/bnzk/django-mailprotector.svg
     :target: https://travis-ci.org/bnzk/django-mailprotector
 
-
 A reusable Django app that protects email addresses, in various ways. Django 1.8+, no further dependencies.
 
 Installation
