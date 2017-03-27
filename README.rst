@@ -1,7 +1,7 @@
 Django Mailprotector
 ============
 
-A reusable Django app that protects email addresses, in various ways. Django 1.8+, no dependencies.
+A reusable Django app that protects email addresses, in various ways. Django 1.8+, no further dependencies.
 
 Installation
 ------------
@@ -11,12 +11,6 @@ To get the latest stable release from PyPi (not yet!)
 .. code-block:: bash
 
     pip install django-mailprotector
-
-To get the latest commit from GitHub
-
-.. code-block:: bash
-
-    pip install -e git+git://github.com/bnzk/django-mailprotector.git#egg=mailprotector
 
 Add ``mailprotector`` to your ``INSTALLED_APPS``
 
@@ -42,13 +36,21 @@ Then either email address after email address:
 
 .. code-block:: html
 
-	{% mailprotector 'your@domain.com' link_text='this link text?' css_class='stylish' %}
+	{% mailprotector 'your@domain.com' link_text='link text' css_class='stylish' %}
 
 Or as text block, for example from a rich text editor:
 
 .. code-block:: html
 
 	{% mailprotector_textblock object.richtext css_class='stylish' %}
+
+
+Development
+----------
+
+- there is test app, available with `./manage.py runserver`.
+- to run tests: ./manage.py test
+- to run tests with django 1.8 / 1.9 / 1.10: `tox`
 
 
 Contribute
@@ -68,7 +70,3 @@ If you want to contribute to this project, please perform the following steps
     git add . && git commit
     git push -u origin feature_branch
     # Send us a pull request for your feature branch
-
-In order to run the tests, simply execute ``tox``. This will install two new
-environments (for Django 1.6 and Django 1.7) and run the tests against both
-environments.
