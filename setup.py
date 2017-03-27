@@ -55,7 +55,7 @@ setup(
     keywords='django, email, obfuscate',
     author='Ben Stähli',
     author_email='bnzk@bnzk.ch',
-    url="https://github.com/benzkji/django-mailprotector",
+    url="https://github.com/bnzk/django-mailprotector",
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
