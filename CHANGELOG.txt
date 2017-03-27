@@ -1,6 +1,9 @@
 === (ongoing) ===
 - add more ways of protection
 
+=== 0.1.2 ===
+- cleanup release, mostly for having sane branches/tags/etc.
+
 === 0.1 ===
 - initial release
 - mailprotector and mailprotector_textblock templatetags
