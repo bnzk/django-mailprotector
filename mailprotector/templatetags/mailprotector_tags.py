@@ -6,18 +6,10 @@ from django import forms
 from django.utils.safestring import mark_safe
 
 from mailprotector.utils import default as protector
+from mailprotector.conf import settings
 
 
 register = template.Library()
-
-
-email_pattern_uncompiled = r'\b[-.\w]+@[-.\w]+\.[a-z]{2,6}\b'
-email_link_pattern = re.compile(r'<a[^>]*href=("|\')?mailto:(' + email_pattern_uncompiled + ')[^>]*>([^<]*)</a>')
-email_pattern  = re.compile(r'(' + email_pattern_uncompiled + r')')
-
-phone_pattern_uncompiled = r'\d{3} \d{3} \d{2} \d{2}'
-phone_link_pattern = re.compile(r'<a[^>]*href=("|\')?tel:(' + phone_pattern_uncompiled + ')[^>]*>([^<]*)</a>')
-phone_pattern  = re.compile(r'(' + phone_pattern_uncompiled + r')')
 
 
 @register.simple_tag
@@ -40,9 +32,25 @@ def mailprotector(value, *args, **kwargs):
 def mailprotector_textblock(textblock, *args, **kwargs):
     css_class =  kwargs.get('css_class', '')
     # first, links
-    textblock = email_link_pattern.sub(lambda match: _protect_match_email(match, css_class), textblock)
+    textblock = settings.MAILPROTECTOR_EMAIL_LINK_PATTERN.sub(
+        lambda match: _protect_match_email(match, css_class),
+        textblock
+    )
     # second, email only
-    textblock = email_pattern.sub(lambda match: _protect_match_email_simple(match, css_class), textblock)
+    textblock = settings.MAILPROTECTOR_EMAIL_PATTERN.sub(
+        lambda match: _protect_match_email_simple(match, css_class),
+        textblock
+    )
+    # first, links
+    textblock = settings.MAILPROTECTOR_PHONE_LINK_PATTERN.sub(
+        lambda match: _protect_match_phone(match, css_class),
+        textblock
+    )
+    # second, phone only
+    textblock = settings.MAILPROTECTOR_PHONE_PATTERN.sub(
+        lambda match: _protect_match_phone_simple(match, css_class),
+        textblock
+    )
     return mark_safe(textblock)
 
 
@@ -56,3 +64,15 @@ def _protect_match_email_simple(match, css_class):
     email = match.groups()[0]
     link_text = email
     return protector.protect_email(email, link_text, css_class)
+
+
+def _protect_match_phone(match, css_class):
+    phone = match.groups()[1]
+    link_text = match.groups()[2]
+    return protector.protect_phone(phone, link_text, css_class)
+
+
+def _protect_match_phone_simple(match, css_class):
+    phone = match.groups()[0]
+    link_text = phone
+    return protector.protect_phone(phone, link_text, css_class)
