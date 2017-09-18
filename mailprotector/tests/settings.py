@@ -17,7 +17,8 @@ SELENIUM_WEBDRIVER = webdriver
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:',
+        'NAME': 'sqlite.db',
+        # 'NAME': ':memory:',
     }
 }
 
@@ -73,9 +74,14 @@ INTERNAL_APPS = [
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 
 MIDDLEWARE_CLASSES = [
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 ]
+
 
 COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(
     os.path.join(APP_ROOT, 'tests/coverage'))

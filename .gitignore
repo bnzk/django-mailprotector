@@ -9,6 +9,7 @@ db.sqlite
 dist/
 docs/_build/
 local_settings.py
+*.db
 
 .idea
 # Byte-compiled / optimized / DLL files
