@@ -41,7 +41,8 @@ Or as text block, for example from a rich text editor:
 For the mailprotector_textblock tag, you can yourself define the used regexes. Following are the
 defaults. If any of these are `None`, it is omitted during protection. When defining your own
 regexes, have a look a the parentheses, as they define matched subgroups, which define link text
-and link value (email/phone).
+and link value (email/phone). WARNING: The default phone pattern is going to change to a more
+international default!
 
     email_pattern = r'\b[-.\w]+@[-.\w]+\.[a-z]{2,6}\b'
     email_link_pattern = r'<a[^>]*href=("|\')?mailto:(' + email_pattern + ')[^>]*>([^<]*)</a>'
