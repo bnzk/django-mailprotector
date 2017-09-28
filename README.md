@@ -1,8 +1,8 @@
 # Django Mailprotector
 
-[![Build Status](https://travis-ci.org/bnzk/djangocms-mailprotector.svg "Build Status")](https://travis-ci.org/bnzk/djangocms-mailprotector/)
-[![PyPi Version](https://img.shields.io/pypi/v/djangocms-misc.svg "PyPi Version")](https://pypi.python.org/pypi/djangocms-mailprotector/)
-[![Licence](https://img.shields.io/pypi/l/djangocms-mailprotector.svg "Licence")](https://pypi.python.org/pypi/djangocms-mailprotector/)
+[![Build Status](https://travis-ci.org/bnzk/django-mailprotector.svg "Build Status")](https://travis-ci.org/bnzk/django-mailprotector/)
+[![PyPi Version](https://img.shields.io/pypi/v/django-misc.svg "PyPi Version")](https://pypi.python.org/pypi/django-mailprotector/)
+[![Licence](https://img.shields.io/pypi/l/django-mailprotector.svg "Licence")](https://pypi.python.org/pypi/django-mailprotector/)
 
 A reusable Django app that protects email addresses and phone numbers, in various ways. Django 1.8+, no further dependencies.
 
