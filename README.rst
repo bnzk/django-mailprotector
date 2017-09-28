@@ -1,24 +1,18 @@
-Django Mailprotector
-============
+# Django Mailprotector
 
-.. image:: https://travis-ci.org/bnzk/django-mailprotector.svg
-    :target: https://travis-ci.org/bnzk/django-mailprotector
+[![Build Status](https://travis-ci.org/bnzk/djangocms-mailprotector.svg "Build Status")](https://travis-ci.org/bnzk/djangocms-mailprotector/)
+[![PyPi Version](https://img.shields.io/pypi/v/djangocms-misc.svg "PyPi Version")](https://pypi.python.org/pypi/djangocms-mailprotector/)
+[![Licence](https://img.shields.io/pypi/l/djangocms-mailprotector.svg "Licence")](https://pypi.python.org/pypi/djangocms-mailprotector/)
 
 A reusable Django app that protects email addresses, in various ways. Django 1.8+, no further dependencies.
 
-
-Installation
-------------
+## Installation
 
 To get the latest stable release from PyPi
 
-.. code-block:: bash
-
     pip install django-mailprotector
 
-Add ``mailprotector`` to your ``INSTALLED_APPS``
-
-.. code-block:: python
+Add `mailprotector` to your `INSTALLED_APPS`
 
     INSTALLED_APPS = (
         ...,
@@ -26,43 +20,31 @@ Add ``mailprotector`` to your ``INSTALLED_APPS``
     )
 
 
-Usage
------
+## Usage
 
 Before your tags/filters are available in your templates, load them by using
 
-.. code-block:: html
-
 	{% load mailprotector_tags %}
 
-
 Then either email address after email address:
-
-.. code-block:: html
 
 	{% mailprotector 'your@domain.com' link_text='link text' css_class='stylish' %}
 
 Or as text block, for example from a rich text editor:
 
-.. code-block:: html
-
 	{% mailprotector_textblock object.richtext css_class='stylish' %}
 
 
-Development
-----------
+## Development
 
 - there is test app, available with `./manage.py runserver`.
 - to run tests: ./manage.py test
 - to run tests with django 1.8 / 1.9 / 1.10: `tox`
 
 
-Contribute
-----------
+## Contribute
 
 If you want to contribute to this project, please perform the following steps
-
-.. code-block:: bash
 
     # Fork this repository
     # Clone your fork

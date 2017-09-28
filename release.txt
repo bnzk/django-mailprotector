@@ -12,4 +12,3 @@ python setup.py register -r pypitest
 twine upload dist/* -r pypitest
 python setup.py register -r pypi
 twine upload dist/* -r pypi
-
