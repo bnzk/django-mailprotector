@@ -12,3 +12,5 @@ python setup.py register -r pypitest
 twine upload dist/* -r pypitest
 python setup.py register -r pypi
 twine upload dist/* -r pypi
+
+version bump to 0.0.4-dev
