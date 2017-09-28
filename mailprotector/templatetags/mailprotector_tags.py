@@ -32,25 +32,29 @@ def mailprotector(value, *args, **kwargs):
 def mailprotector_textblock(textblock, *args, **kwargs):
     css_class =  kwargs.get('css_class', '')
     # first, links
-    textblock = settings.MAILPROTECTOR_EMAIL_LINK_PATTERN.sub(
-        lambda match: _protect_match_email(match, css_class),
-        textblock
-    )
+    if settings.MAILPROTECTOR_EMAIL_LINK_PATTERN:
+        textblock = settings.MAILPROTECTOR_EMAIL_LINK_PATTERN.sub(
+            lambda match: _protect_match_email(match, css_class),
+            textblock
+        )
     # second, email only
-    textblock = settings.MAILPROTECTOR_EMAIL_PATTERN.sub(
-        lambda match: _protect_match_email_simple(match, css_class),
-        textblock
-    )
+    if settings.MAILPROTECTOR_EMAIL_PATTERN:
+        textblock = settings.MAILPROTECTOR_EMAIL_PATTERN.sub(
+            lambda match: _protect_match_email_simple(match, css_class),
+            textblock
+        )
     # first, links
-    textblock = settings.MAILPROTECTOR_PHONE_LINK_PATTERN.sub(
-        lambda match: _protect_match_phone(match, css_class),
-        textblock
-    )
+    if settings.MAILPROTECTOR_PHONE_LINK_PATTERN:
+        textblock = settings.MAILPROTECTOR_PHONE_LINK_PATTERN.sub(
+            lambda match: _protect_match_phone(match, css_class),
+            textblock
+        )
     # second, phone only
-    textblock = settings.MAILPROTECTOR_PHONE_PATTERN.sub(
-        lambda match: _protect_match_phone_simple(match, css_class),
-        textblock
-    )
+    if settings.MAILPROTECTOR_PHONE_PATTERN:
+        textblock = settings.MAILPROTECTOR_PHONE_PATTERN.sub(
+            lambda match: _protect_match_phone_simple(match, css_class),
+            textblock
+        )
     return mark_safe(textblock)
 
 
