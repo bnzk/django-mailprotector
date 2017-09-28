@@ -16,5 +16,17 @@
             <br>
             5. {% mailprotector_textblock 'some bigger piece of <a data-not-only-white-space="disaster" href="mailto:html-text@example.com" data-test="test">html-text</a>' css_class='html-text' %}
         </p>
+        <h1>Experimental, untested: Phone numb3rs</h1>
+        <p>
+            1. only phone: {% mailprotector '032 322 22 22' %}
+            <br>
+            2. link text: {% mailprotector '032 322 22 23' link_text='phone-link-text' %}
+            <br>
+            3. with class: {% mailprotector '032 322 22 24' link_text='css-class-phone' css_class='css-class-phone' %}
+            <br>
+            4. {% mailprotector_textblock "some bigger piece of 032 322 22 25 plain text" css_class='plain-text-phone' %}
+            <br>
+            5. {% mailprotector_textblock 'some bigger piece of <a data-not-only-white-space="disaster" href="tel:032 322 22 26" data-test="test">032 322 22 26 link text</a>' css_class='html-text-phone' %}
+        </p>
     </body>
 </html>
