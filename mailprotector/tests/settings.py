@@ -73,7 +73,7 @@ INTERNAL_APPS = [
 
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

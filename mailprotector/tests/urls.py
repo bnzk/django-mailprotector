@@ -7,5 +7,5 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^test/$', TemplateView.as_view(template_name='test_app/test.html'), name='test_tag_view'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 ]
