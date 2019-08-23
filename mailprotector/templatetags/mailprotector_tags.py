@@ -1,5 +1,3 @@
-import re
-
 from django.core.validators import validate_email
 from django import template
 from django import forms
@@ -15,7 +13,7 @@ register = template.Library()
 @register.simple_tag
 def mailprotector(value, *args, **kwargs):
     link_text = kwargs.get('link_text', value)
-    css_class =  kwargs.get('css_class', '')
+    css_class = kwargs.get('css_class', '')
     try:
         validate_email(value)
         result = protector.protect_email(value, link_text, css_class)
@@ -30,7 +28,7 @@ def mailprotector(value, *args, **kwargs):
 # and: http://stackoverflow.com/questions/26496119/passing-two-arguments-to-replace-function-for-re-sub
 @register.simple_tag
 def mailprotector_textblock(textblock, *args, **kwargs):
-    css_class =  kwargs.get('css_class', '')
+    css_class = kwargs.get('css_class', '')
     # first, links
     if settings.MAILPROTECTOR_EMAIL_LINK_PATTERN:
         textblock = settings.MAILPROTECTOR_EMAIL_LINK_PATTERN.sub(

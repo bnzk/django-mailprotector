@@ -27,20 +27,21 @@ class MailprotectorTemplatetagSeleniumTests(SeleniumTestCase):
         self.wd.find_element_by_xpath("//a[@href='tel:032 322 22 25'][@class='plain-text-phone'][text()='032 322 22 25']")
         self.wd.find_element_by_xpath("//a[@href='tel:032 322 22 26'][@class='html-text-phone'][text()='032 322 22 26 link text']")
 
+
 class MailprotectorTemplatetagTests(TestCase):
 
-        def test_no_email_in_source(self):
-            client = Client()
-            response = client.get('/test/')
-            self.assertNotContains(response, 'mailto:')
-            self.assertNotContains(response, 'tel:')
-            self.assertNotContains(response, 'only-email@example.com')
-            self.assertNotContains(response, 'link-text@example.com')
-            self.assertNotContains(response, 'css-class@example.com')
-            self.assertNotContains(response, 'plain-text@example.com')
-            self.assertNotContains(response, 'response-text@example.com')
-            self.assertNotContains(response, '032 322 22 22')
-            self.assertNotContains(response, '032 322 22 23')
-            self.assertNotContains(response, '032 322 22 24')
-            self.assertNotContains(response, '032 322 22 25')
-            self.assertNotContains(response, '032 322 22 26')
+    def test_no_email_in_source(self):
+        client = Client()
+        response = client.get('/test/')
+        self.assertNotContains(response, 'mailto:')
+        self.assertNotContains(response, 'tel:')
+        self.assertNotContains(response, 'only-email@example.com')
+        self.assertNotContains(response, 'link-text@example.com')
+        self.assertNotContains(response, 'css-class@example.com')
+        self.assertNotContains(response, 'plain-text@example.com')
+        self.assertNotContains(response, 'response-text@example.com')
+        self.assertNotContains(response, '032 322 22 22')
+        self.assertNotContains(response, '032 322 22 23')
+        self.assertNotContains(response, '032 322 22 24')
+        self.assertNotContains(response, '032 322 22 25')
+        self.assertNotContains(response, '032 322 22 26')

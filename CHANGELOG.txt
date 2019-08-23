@@ -1,5 +1,10 @@
 === (ongoing) ===
 - add more ways of protection
+- add on click and (re)captcha protection!
+
+=== 0.1.5 ===
+- support up to django 2.2
+- switched to tox-travis for testing on travis
 
 === 0.1.4 ===
 - phone protection

@@ -2,6 +2,7 @@
 *.egg-info/
 *.pyc
 *coverage/
+htmlcov/
 .tox/
 app_media/
 app_static/

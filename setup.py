@@ -45,12 +45,13 @@ def read(fname):
     except IOError:
         return ''
 
+
 setup(
     name="django-mailprotector",
     version=app.__version__,
     description=read('DESCRIPTION'),
     long_description=read('PYPY.rst'),
-    license='The MIT License',
+    license='MIT License',
     platforms=['OS Independent'],
     keywords='django, email, obfuscate',
     author='Ben Stähli',
