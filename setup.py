@@ -45,6 +45,7 @@ def read(fname):
     except IOError:
         return ''
 
+
 setup(
     name="django-mailprotector",
     version=app.__version__,

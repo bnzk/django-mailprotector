@@ -1,6 +1,6 @@
 """URLs to run the tests."""
 # from compat import patterns, include, url
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
