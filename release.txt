@@ -1,9 +1,9 @@
 
 
-git flow release start 0.0.3
+git flow release start 0.0.
 version bump in mailprotector/__init__.py
 CHANGELOG!
-git flow release finish 0.xxx
+git flow release finish 0.0.
 git push --all; git push --tags
 git push upstream --all; git push upstream --tags
 python setup.py sdist

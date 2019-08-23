@@ -1,5 +1,6 @@
 === (ongoing) ===
 - add more ways of protection
+- add on click and (re)captcha protection!
 
 === 0.1.5 ===
 - support up to django 2.2
