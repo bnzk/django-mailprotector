@@ -1,8 +1,8 @@
 import django
-from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium import webdriver
 
 # compat thing!
 if django.VERSION[:2] < (1, 10):
@@ -11,20 +11,13 @@ else:
     from django.urls import reverse
 
 
-# determine the WebDriver module. default to Firefox
-try:
-    web_driver_module = settings.SELENIUM_WEBDRIVER
-except AttributeError:
-    from selenium.webdriver.firefox import webdriver as web_driver_module
-
-
 class SeleniumTestCase(StaticLiveServerTestCase):
     """
     A base test case for Selenium, providing hepler methods for generating
     clients and logging in profiles.
     """
     def open(self, url):
-        self.wd.get("%s%s" % (self.live_server_url, url))
+        self.webdriver.get("%s%s" % (self.live_server_url, url))
 
     def login(self):
         self.open(reverse('admin:index'))
@@ -33,17 +26,17 @@ class SeleniumTestCase(StaticLiveServerTestCase):
         # call find_css. Since we can chain methods, we can
         # call the built-in send_keys method right away to change the
         # value of the field
-        self.wd.find_css('#id_username').send_keys(self.username)
+        self.webdriver.find_css('#id_username').send_keys(self.username)
         # for the password, we can now just call find_css since we know the page
         # has been rendered
-        self.wd.find_css("#id_password").send_keys(self.password)
+        self.webdriver.find_css("#id_password").send_keys(self.password)
         # You're not limited to CSS selectors only, check
         # http://seleniumhq.org/docs/03_webdriver.html for
         # a more compreehensive documentation.
-        self.wd.find_element_by_xpath('//input[@type="submit"]').click()
+        self.webdriver.find_element_by_xpath('//input[@type="submit"]').click()
 
 
-class CustomWebDriver(web_driver_module.WebDriver):
+class CustomWebDriver(webdriver.Firefox):
     """Our own WebDriver with some helpers added"""
 
     def find_css(self, css_selector):

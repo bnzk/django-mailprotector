@@ -14,6 +14,8 @@ APP_ROOT = os.path.abspath(
 
 SELENIUM_WEBDRIVER = webdriver
 
+HEADLESS_TESTING = True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
