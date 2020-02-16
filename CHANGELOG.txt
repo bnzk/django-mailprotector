@@ -1,8 +1,12 @@
-=== (ongoing) ===
-- add more ways of protection
-- add on click and (re)captcha protection!
+=== (ongoing) (2020-)  ===
 
-=== 0.2.0 (2020-02-16) ===
+- add more ways of protection
+- add ajax protection!
+- add (re)captcha protection!
+
+
+=== 0.2.0 ===
+
 - MAILPROTECTOR_EMAIL_LINK_PATTERN and MAILPROTECTOR_PHONE_LINK_PATTERN are no more used,
     instead, a beautifulsoup based solution (more robust, can keep all attributes) is used.
 - base for multiple protectors is made. for now, munger (as before) and munger_link_only are available
@@ -10,21 +14,25 @@
 
 
 === 0.1.5 ===
+
 - support up to django 2.2
 - switched to tox-travis for testing on travis
 
 
 === 0.1.4 ===
+
 - phone protection
 - regular expressions used for email/phone detection in mailprotector_textblock can be configured
   via settings
 
 
 === 0.1.3 ===
+
 - cleanup release, mostly for having sane branches/tags/etc. (0.1.2 never on pypi)
 
 
 === 0.1 ===
+
 - initial release
 - mailprotector and mailprotector_textblock templatetags
 
