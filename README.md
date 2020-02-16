@@ -19,6 +19,8 @@ Add `mailprotector` to your `INSTALLED_APPS`
         ...,
         'mailprotector',
     )
+    
+If you want to use the `mailprotector_textblock` tag, you'll need to have beautifulsoup4 installed.
 
 
 ## Usage
