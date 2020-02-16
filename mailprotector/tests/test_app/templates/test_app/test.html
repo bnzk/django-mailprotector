@@ -15,6 +15,13 @@
             4. {% mailprotector_textblock "some bigger piece of plain-text@example.com plain text" css_class='plain-text' %}
             <br>
             5. {% mailprotector_textblock 'some bigger piece of <a data-not-only-white-space="disaster" href="mailto:html-text@example.com" data-test="test">html-text</a>' css_class='html-text' %}
+            <br>
+            6. {% mailprotector_textblock 'some bigger piece of <a data-not-only-white-space="disaster" href="mailto:html-text@example.com" data-test="test">html-text <i>with tags in link text!</i></a>' css_class='html-text' %}
+            <br>
+            7. with not existing protector: {% mailprotector 'only-email@example.com' link_text='css-class' protector='not_existing_what' %}
+            <br>
+            8. invalid protector textblock mode: {% mailprotector_textblock 'some bigger piece of text, but  <a data-not-only-white-space="disaster" href="mailto:html-text@example.com" data-test="test">html-text <i>with tags in link text!</i></a>' protector='not_existing_what' css_class='html-text' %}
+
         </p>
         <h1>Experimental, untested: Phone numb3rs</h1>
         <p>

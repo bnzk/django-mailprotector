@@ -1,3 +1,4 @@
 django
 six
 django-appconf
+beautifulsoup4
