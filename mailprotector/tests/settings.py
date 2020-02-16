@@ -14,6 +14,8 @@ APP_ROOT = os.path.abspath(
 
 HEADLESS_TESTING = False
 
+HEADLESS_TESTING = True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
+from selenium.webdriver.firefox.options import Options
+
 from .utils.selenium_utils import SeleniumTestCase, CustomWebDriver
 from django.test import Client, TestCase
 
@@ -7,10 +10,13 @@ class SeleniumBase(object):
 
     def setUp(self):
         # Instantiating the WebDriver will load your browser
-        self.wd = CustomWebDriver()
+        options = Options()
+        if settings.HEADLESS_TESTING:
+            options.add_argument("--headless")
+        self.webdriver = CustomWebDriver(firefox_options=options, )
 
     def tearDown(self):
-        self.wd.quit()
+        self.webdriver.quit()
 
     def test_tag_email(self):
         self.open('/test/')
@@ -24,11 +30,11 @@ class SeleniumBase(object):
     def test_tag_phone(self):
         self.open('/test/')
         # phone
-        self.wd.find_element_by_xpath("//a[@href='tel:032 322 22 22']")
-        self.wd.find_element_by_xpath("//a[@href='tel:032 322 22 23'][text()='phone-link-text']")
-        self.wd.find_element_by_xpath("//a[@href='tel:032 322 22 24'][@class='css-class-phone'][text()='css-class-phone']")
-        self.wd.find_element_by_xpath("//a[@href='tel:032 322 22 25'][@class='plain-text-phone'][text()='032 322 22 25']")
-        self.wd.find_element_by_xpath("//a[@href='tel:032 322 22 26'][@class='html-text-phone'][text()='032 322 22 26 link text']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 22']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 23'][text()='phone-link-text']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 24'][@class='css-class-phone'][text()='css-class-phone']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 25'][@class='plain-text-phone'][text()='032 322 22 25']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 26'][@class='html-text-phone'][text()='032 322 22 26 link text']")
 
 
 class SimpleBase(object):

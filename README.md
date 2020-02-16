@@ -76,3 +76,11 @@ If you want to contribute to this project, please perform the following steps
     git add . && git commit
     git push -u origin feature_branch
     # Send us a pull request for your feature branch
+
+#### geckodriver install
+
+- visit https://github.com/mozilla/geckodriver/releases
+- download the latest version of "geckodriver-vX.XX.X-linux64.tar.gz"
+- unarchive the tarball (tar -xvzf geckodriver-vX.XX.X-linux64.tar.gz)
+- give executable permissions to geckodriver (chmod +x geckodriver)
+- move the geckodriver binary to /usr/local/bin or any location on your system PATH.
