@@ -17,7 +17,7 @@ def protect_phone(phone, link_text, css_class, **kwargs):
 
 
 def protect(link, link_text, css_class, **attributes):
-    link_text = link_text.replace('.', ' . ')  # noqa
+    # link_text = link_text.replace('.', ' . ')  # noqa
     link_text = link_text.replace('@', ' ( at ) ')
     link_array = ''
     for c in link:
