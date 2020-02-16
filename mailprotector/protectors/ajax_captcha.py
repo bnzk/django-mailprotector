@@ -4,17 +4,17 @@ import random
 
 # originally based on http://djangosnippets.org/snippets/1284/
 
-def protect_email(email, link_text, css_class):
+def protect_email(email, link_text, css_class, **kwargs):
     href_start = '&#x6d;&#97;&#105;&#x6c;&#000116;&#111;&#x3a;'
-    return protect(href_start, email, link_text, css_class)
+    return protect(href_start, email, link_text, css_class, **kwargs)
 
 
-def protect_phone(phone, link_text, css_class):
+def protect_phone(phone, link_text, css_class, **kwargs):
     href_start = '&#x74;&#101;&#108;&#x3a;'
-    return protect(href_start, phone, link_text, css_class)
+    return protect(href_start, phone, link_text, css_class, **kwargs)
 
 
-def protect(href_start, value, link_text, css_class):
+def protect(href_start, value, link_text, css_class, **kwargs):
     value_array_content = ''
     text_array_content = ''
     r = lambda c: '"' + str(ord(c)) + '",'  # noqa

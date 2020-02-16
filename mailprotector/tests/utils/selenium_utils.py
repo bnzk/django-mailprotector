@@ -3,6 +3,8 @@ from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 
 # compat thing!
 if django.VERSION[:2] < (1, 10):
@@ -11,18 +13,18 @@ else:
     from django.urls import reverse
 
 
-# determine the WebDriver module. default to Firefox
-try:
-    web_driver_module = settings.SELENIUM_WEBDRIVER
-except AttributeError:
-    from selenium.webdriver.firefox import webdriver as web_driver_module
-
-
 class SeleniumTestCase(StaticLiveServerTestCase):
     """
     A base test case for Selenium, providing hepler methods for generating
     clients and logging in profiles.
     """
+    def setUp(self):
+        # Instantiating the WebDriver will load your browser
+        options = Options()
+        if settings.HEADLESS_TESTING:
+            options.add_argument("--headless")
+        self.webdriver = CustomWebDriver(firefox_options=options, )
+
     def open(self, url):
         self.wd.get("%s%s" % (self.live_server_url, url))
 
@@ -43,7 +45,7 @@ class SeleniumTestCase(StaticLiveServerTestCase):
         self.wd.find_element_by_xpath('//input[@type="submit"]').click()
 
 
-class CustomWebDriver(web_driver_module.WebDriver):
+class CustomWebDriver(webdriver.Firefox):
     """Our own WebDriver with some helpers added"""
 
     def find_css(self, css_selector):
