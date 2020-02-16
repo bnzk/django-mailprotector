@@ -29,7 +29,7 @@ def protect(link, link_text, css_class, **attributes):
         attributes_html += '{}="{}" '.format(key, value)
     the_id = "_tyjsdfss_" + str(random.randint(1000, 999999999999999999))
     result = """
-        <a href="javascript:uncrypt_{id}()" {attributes_html}>{link_text}</a>
+        <a href="javascript:uncrypt_{id}()" {attributes_html} class="{css_class}">{link_text}</a>
         <script language="javascript" type="text/javascript">
             <!--
             function uncrypt_{id} () {{

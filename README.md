@@ -45,8 +45,8 @@ Or as text block, for example from a rich text editor:
 This settings defines the protection algorithm used. Each has benefits and drawbacks...
 
 - munger: basic "munging" algo, replacing a mailto/tel link with a span, that gets filled with a new link. 
-    drawbacks: mailto are in dom, after a page is fully rendered with js (for example, with phantomjs). also, the link
-    text can only be basic text, no html is possible
+    drawbacks: mailto are in dom, after a page is fully rendered with js (for example, with phantomjs). the link
+    text can only be basic text, no html is possible. existing attributes (in textblock mode) will be removed (including class!) .
 - munger_link_only: "munging", but only with the href. 
     benefits: all link attributes as well as link text including html is conserved
     drawbacks: for safety, emails and phone numbers (not yet) are protected in a basic way: @ = ' (at) ', . = ' . '

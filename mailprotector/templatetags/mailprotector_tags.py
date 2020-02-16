@@ -37,38 +37,25 @@ def mailprotector_textblock(textblock, *args, **kwargs):
     css_class = kwargs.get('css_class', '')
     # make the soup
     soup = BeautifulSoup(textblock, 'html.parser')
-    # first, links
-    # if settings.MAILPROTECTOR_EMAIL_LINK_PATTERN:
-    #     textblock = settings.MAILPROTECTOR_EMAIL_LINK_PATTERN.sub(
-    #         lambda match: _protect_match_email(protector, match, css_class),
-    #         textblock
-    #     )
     for link in soup.select('a[href^="mailto:"]'):
         email = link.attrs['href'][7:]
         attributes = link.attrs
-        css_classes = attributes.get('class', '')
+        css_classes = ' '.join(attributes.get('class', []))
         css_classes += ' ' + css_class
         link_text = ''
         for el in link.children:
             link_text += str(el)
-        result = protector.protect_email(email, link_text, css_class, **attributes)
+        result = protector.protect_email(email, link_text, css_classes, **attributes)
         link.replace_with(BeautifulSoup(result, 'html.parser'))
-    textblock = mark_safe(str(soup))
-    # first, phone links
-    # if settings.MAILPROTECTOR_PHONE_LINK_PATTERN:
-    #     textblock = settings.MAILPROTECTOR_PHONE_LINK_PATTERN.sub(
-    #         lambda match: _protect_match_phone(protector, match, css_class),
-    #         textblock
-    #     )
     for link in soup.select('a[href^="tel:"]'):
         phone = link.attrs['href'][4:]
         attributes = link.attrs
-        css_classes = attributes.get('class', '')
+        css_classes = ' '.join(attributes.get('class', []))
         css_classes += ' ' + css_class
         link_text = ''
         for el in link.children:
             link_text += str(el)
-        result = protector.protect_phone(phone, link_text, css_class, **attributes)
+        result = protector.protect_phone(phone, link_text, css_classes, **attributes)
         link.replace_with(BeautifulSoup(result, 'html.parser'))
     textblock = mark_safe(str(soup))
     # second, email only, regex!

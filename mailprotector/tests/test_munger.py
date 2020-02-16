@@ -11,4 +11,7 @@ class MailprotectorTemplatetagSeleniumTests(SeleniumBase, SeleniumTestCase):
 
 @override_settings(MAILPROTECTOR_MODE='munger')
 class MailprotectorTemplatetagTests(SimpleBase, TestCase):
-    pass
+
+    def test_css_class(self):
+        # only in selenium
+        pass

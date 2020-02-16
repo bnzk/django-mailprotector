@@ -16,7 +16,7 @@
             <br>
             5. {% mailprotector_textblock 'some bigger piece of <a data-not-only-white-space="disaster" href="mailto:html-text@example.com" data-test="test">html-text</a>' css_class='html-text' %}
             <br>
-            6. {% mailprotector_textblock 'some bigger piece of <a data-not-only-white-space="disaster" href="mailto:html-text@example.com" data-test="test">html-text <i>with tags in link text!</i></a>' css_class='html-text' %}
+            6. {% mailprotector_textblock 'some bigger piece of <a data-not-only-white-space="disaster" class="what" href="mailto:html-text@example.com" data-test="test">html-text <i>with tags in link text!</i></a> and with existing class' css_class='html-text' %}
             <br>
             7. with not existing protector: {% mailprotector 'only-email@example.com' link_text='css-class' protector='not_existing_what' %}
             <br>

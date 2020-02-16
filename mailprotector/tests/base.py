@@ -11,7 +11,8 @@ class SeleniumBase(object):
         self.webdriver.find_element_by_xpath("//a[@href='mailto:link-text@example.com'][text()='link-text']")
         self.webdriver.find_element_by_xpath("//a[@href='mailto:css-class@example.com'][@class='css-class'][text()='css-class']")
         self.webdriver.find_element_by_xpath("//a[@href='mailto:plain-text@example.com'][@class='plain-text'][text()='plain-text@example.com']")
-        self.webdriver.find_element_by_xpath("//a[@href='mailto:html-text@example.com'][@class='html-text'][text()='html-text']")
+        self.webdriver.find_element_by_xpath("//a[@href='mailto:html-text@example.com'][@class=' html-text'][text()='html-text']")
+        self.webdriver.find_element_by_xpath("//a[@href='mailto:html-text@example.com'][@class='what html-text']")
 
     def test_tag_phone(self):
         self.open('/test/')
@@ -20,10 +21,17 @@ class SeleniumBase(object):
         self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 23'][text()='phone-link-text']")
         self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 24'][@class='css-class-phone'][text()='css-class-phone']")
         self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 25'][@class='plain-text-phone'][text()='032 322 22 25']")
-        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 26'][@class='html-text-phone'][text()='032 322 22 26 link text']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 26'][@class=' html-text-phone'][text()='032 322 22 26 link text']")
 
 
 class SimpleBase(object):
+
+    def test_css_class(self):
+        client = Client()
+        response = client.get('/test/')
+        self.assertContains(response, 'class="what html-text"')
+        self.assertContains(response, 'class="html-text"')
+        self.assertContains(response, 'class="plain-text"')
 
     def test_no_email_in_source(self):
         client = Client()
