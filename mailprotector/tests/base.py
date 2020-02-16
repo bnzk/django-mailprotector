@@ -1,31 +1,17 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
-from selenium.webdriver.firefox.options import Options
-
-from .utils.selenium_utils import SeleniumTestCase, CustomWebDriver
-from django.test import Client, TestCase
+from django.test import Client
 
 
 class SeleniumBase(object):
 
-    def setUp(self):
-        # Instantiating the WebDriver will load your browser
-        options = Options()
-        if settings.HEADLESS_TESTING:
-            options.add_argument("--headless")
-        self.webdriver = CustomWebDriver(firefox_options=options, )
-
-    def tearDown(self):
-        self.webdriver.quit()
-
     def test_tag_email(self):
         self.open('/test/')
         # email
-        self.wd.find_element_by_xpath("//a[@href='mailto:only-email@example.com']")
-        self.wd.find_element_by_xpath("//a[@href='mailto:link-text@example.com'][text()='link-text']")
-        self.wd.find_element_by_xpath("//a[@href='mailto:css-class@example.com'][@class='css-class'][text()='css-class']")
-        self.wd.find_element_by_xpath("//a[@href='mailto:plain-text@example.com'][@class='plain-text'][text()='plain-text@example.com']")
-        self.wd.find_element_by_xpath("//a[@href='mailto:html-text@example.com'][@class='html-text'][text()='html-text']")
+        self.webdriver.find_element_by_xpath("//a[@href='mailto:only-email@example.com']")
+        self.webdriver.find_element_by_xpath("//a[@href='mailto:link-text@example.com'][text()='link-text']")
+        self.webdriver.find_element_by_xpath("//a[@href='mailto:css-class@example.com'][@class='css-class'][text()='css-class']")
+        self.webdriver.find_element_by_xpath("//a[@href='mailto:plain-text@example.com'][@class='plain-text'][text()='plain-text@example.com']")
+        self.webdriver.find_element_by_xpath("//a[@href='mailto:html-text@example.com'][@class='html-text'][text()='html-text']")
 
     def test_tag_phone(self):
         self.open('/test/')

@@ -2,7 +2,7 @@ import re
 import random
 
 
-# originally based on http://djangosnippets.org/snippets/1284/
+# based on http://djangosnippets.org/snippets/1284/
 
 def protect_email(email, link_text, css_class, **kwargs):
     # href_start = '&#x6d;&#97;&#105;&#x6c;&#000116;&#111;&#x3a;'
@@ -11,13 +11,13 @@ def protect_email(email, link_text, css_class, **kwargs):
 
 
 def protect_phone(phone, link_text, css_class, **kwargs):
-    href_start = '&#x74;&#101;&#108;&#x3a;'
+    # href_start = '&#x74;&#101;&#108;&#x3a;'
     link = 'tel:%s' % phone
     return protect(link, link_text, css_class, **kwargs)
 
 
 def protect(link, link_text, css_class, **attributes):
-    link_text = link_text.replace('.', ' . ')
+    link_text = link_text.replace('.', ' . ')  # noqa
     link_text = link_text.replace('@', ' ( at ) ')
     link_array = ''
     for c in link:
@@ -31,7 +31,7 @@ def protect(link, link_text, css_class, **attributes):
     result = """
         <a href="javascript:uncrypt_{id}()" {attributes_html}>{link_text}</a>
         <script language="javascript" type="text/javascript">
-            <!--        
+            <!--
             function uncrypt_{id} () {{
                 var value = '';
                 var _tyjsdf = [{value_array}];

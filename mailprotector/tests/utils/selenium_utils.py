@@ -6,6 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
+
 # compat thing!
 if django.VERSION[:2] < (1, 10):
     from django.core.urlresolvers import reverse
@@ -24,6 +25,9 @@ class SeleniumTestCase(StaticLiveServerTestCase):
         if settings.HEADLESS_TESTING:
             options.add_argument("--headless")
         self.webdriver = CustomWebDriver(firefox_options=options, )
+
+    def tearDown(self):
+        self.webdriver.quit()
 
     def open(self, url):
         self.webdriver.get("%s%s" % (self.live_server_url, url))

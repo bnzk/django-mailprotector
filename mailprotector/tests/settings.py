@@ -1,7 +1,7 @@
 """Settings that need to be set in order to run the tests."""
 import os
 import logging
-from selenium.webdriver.phantomjs import webdriver
+
 
 DEBUG = True
 
@@ -11,8 +11,6 @@ SITE_ID = 1
 
 APP_ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..'))
-
-HEADLESS_TESTING = False
 
 HEADLESS_TESTING = True
 
