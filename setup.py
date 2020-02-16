@@ -50,7 +50,7 @@ setup(
     name="django-mailprotector",
     version=app.__version__,
     description=read('DESCRIPTION'),
-    long_description=read('PYPY.rst'),
+    long_description=read('PYPI.rst'),
     license='MIT License',
     platforms=['OS Independent'],
     keywords='django, email, obfuscate',
