@@ -1,5 +1,6 @@
 import re
 import random
+from ..conf import settings
 
 
 # based on http://djangosnippets.org/snippets/1284/
@@ -27,12 +28,15 @@ def protect(link, link_text, css_class, **attributes):
         del(attributes['href'])
     for key, value in attributes.items():
         attributes_html += '{}="{}" '.format(key, value)
-    the_id = "_tyjsdfss_" + str(random.randint(1000, 999999999999999999))
+    the_id = "%s%s" % (
+        settings.MAILPROTECTOR_FUNCTION_PREFIX,
+        str(random.randint(1000, 999999999999999999)),
+    )
     result = """
-        <a href="javascript:uncrypt_{id}()" {attributes_html} class="{css_class}">{link_text}</a>
+        <a href="javascript:{id}()" {attributes_html} class="{css_class}">{link_text}</a>
         <script language="javascript" type="text/javascript">
             <!--
-            function uncrypt_{id} () {{
+            function {id} () {{
                 var value = '';
                 var _tyjsdf = [{value_array}];
                 for(_i=0;_i<_tyjsdf.length;_i++) {{ value += _tyjsdf[_i]; }}

@@ -1,8 +1,10 @@
 import re
 import random
 
+from ..conf import settings
 
-# originally based on http://djangosnippets.org/snippets/1284/
+
+# based on http://djangosnippets.org/snippets/1284/
 
 def protect_email(email, link_text, css_class, **kwargs):
     href_start = '&#x6d;&#97;&#105;&#x6c;&#000116;&#111;&#x3a;'
@@ -24,12 +26,15 @@ def protect(href_start, value, link_text, css_class, **kwargs):
     for c in link_text:
         text_array_content += r(c)
 
-    the_id = "_tyjsdfss-" + str(random.randint(1000, 999999999999999999))
+    the_id = "_%s_%s" % (
+        settings.MAILPROTECTOR_FUNCTION_PREFIX,
+        str(random.randint(1000, 999999999999999999)),
+    )
 
     # omit document.write to make it ajax safe!
     result = """<span id='{id}'></span><script language="javascript" type="text/javascript">
         <!--
-        var _tyjsdf = [{value_array}], _qplmks = [{text_array}];
+        var _tyjsdfn = [{value_array}], _qplmbrks = [{text_array}];
         var content = ('<a class="{css_class}" href="{href_start}');
         for(_i=0;_i<_tyjsdf.length;_i++){{ content += ('&#'+_tyjsdf[_i]+';');}}
         content += ('">');

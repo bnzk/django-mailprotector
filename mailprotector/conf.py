@@ -13,6 +13,7 @@ phone_link_pattern = r'<a[^>]*href=("|\')?tel:(' + phone_pattern + ')[^>]*>([^<]
 
 class MailprotectorConf(AppConf):
     MODE = 'munger'
+    FUNCTION_PREFIX = '_dvaju_'
     EMAIL_PATTERN = re.compile(r'(' + email_pattern + r')')
     EMAIL_LINK_PATTERN = re.compile(email_link_pattern)
     PHONE_PATTERN = re.compile(r'(' + phone_pattern + r')')
