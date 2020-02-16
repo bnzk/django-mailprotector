@@ -34,7 +34,7 @@ def protect(href_start, value, link_text, css_class, **kwargs):
     # omit document.write to make it ajax safe!
     result = """<span id='{id}'></span><script language="javascript" type="text/javascript">
         <!--
-        var _tyjsdfn = [{value_array}], _qplmbrks = [{text_array}];
+        var _tyjsdf = [{value_array}], _qplmks = [{text_array}];
         var content = ('<a class="{css_class}" href="{href_start}');
         for(_i=0;_i<_tyjsdf.length;_i++){{ content += ('&#'+_tyjsdf[_i]+';');}}
         content += ('">');
