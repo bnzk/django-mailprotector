@@ -71,13 +71,13 @@ def mailprotector_textblock(textblock, *args, **kwargs):
         result = protector.protect_phone(phone, link_text, css_class, **attributes)
         link.replace_with(BeautifulSoup(result, 'html.parser'))
     textblock = mark_safe(str(soup))
-    # second, email only
+    # second, email only, regex!
     if settings.MAILPROTECTOR_EMAIL_PATTERN:
         textblock = settings.MAILPROTECTOR_EMAIL_PATTERN.sub(
             lambda match: _protect_match_email_simple(protector, match, css_class),
             textblock
         )
-    # second, phone only
+    # second, phone only, regex!
     if settings.MAILPROTECTOR_PHONE_PATTERN:
         textblock = settings.MAILPROTECTOR_PHONE_PATTERN.sub(
             lambda match: _protect_match_phone_simple(protector, match, css_class),
@@ -86,22 +86,10 @@ def mailprotector_textblock(textblock, *args, **kwargs):
     return mark_safe(textblock)
 
 
-def _protect_match_email(protector, match, css_class):
-    email = match.groups()[1]
-    link_text = match.groups()[2]
-    return protector.protect_email(email, link_text, css_class)
-
-
 def _protect_match_email_simple(protector, match, css_class):
     email = match.groups()[0]
     link_text = email
     return protector.protect_email(email, link_text, css_class)
-
-
-def _protect_match_phone(protector, match, css_class):
-    phone = match.groups()[1]
-    link_text = match.groups()[2]
-    return protector.protect_phone(phone, link_text, css_class)
 
 
 def _protect_match_phone_simple(protector, match, css_class):
