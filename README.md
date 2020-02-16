@@ -38,22 +38,28 @@ Or as text block, for example from a rich text editor:
 
 ## Settings
 
-For the mailprotector_textblock tag, you can yourself define the used regexes. Following are the
-defaults. If any of these are `None`, it is omitted during protection. When defining your own
-regexes, have a look a the parentheses, as they define matched subgroups, which define link text
-and link value (email/phone). WARNING: The default phone pattern is going to change to a more
-international default!
+    MAILPROTECTOR_MODE = 'munger|munger_link_only'
 
+This settings defines the protection algorithm used. Each has benefits and drawbacks...
+
+- munger: basic "munging" algo, replacing a mailto/tel link with a span, that gets filled with a new link. 
+    drawbacks: mailto are in dom, after a page is fully rendered with js (for example, with phantomjs). also, the link
+    text can only be basic text, no html is possible
+- munger_link_only: "munging", but only with the href. 
+    benefits: all link attributes as well as link text including html is conserved
+    drawbacks: for safety, emails and phone numbers (not yet) are protected in a basic way: @ = ' (at) ', . = ' . '
+ 
+ 
     email_pattern = r'\b[-.\w]+@[-.\w]+\.[a-z]{2,6}\b'
-    email_link_pattern = r'<a[^>]*href=("|\')?mailto:(' + email_pattern + ')[^>]*>([^<]*)</a>'
-
     phone_pattern = r'\d{3} \d{3} \d{2} \d{2}'
-    phone_link_pattern = r'<a[^>]*href=("|\')?tel:(' + phone_pattern + ')[^>]*>([^<]*)</a>'
 
     MAILPROTECTOR_EMAIL_PATTERN = re.compile(r'(' + email_pattern + r')')
-    MAILPROTECTOR_EMAIL_LINK_PATTERN = re.compile(email_link_pattern)
     MAILPROTECTOR_PHONE_PATTERN = re.compile(r'(' + phone_pattern + r')')
-    MAILPROTECTOR_PHONE_LINK_PATTERN = re.compile(phone_link_pattern)
+ 
+For the mailprotector_textblock tag, you can yourself define the used regexes. Following are the
+defaults. If any of these are `None`, it is omitted during protection. 
+WARNING: The default phone pattern is going to change to a more
+international default!
 
 
 ## Development
