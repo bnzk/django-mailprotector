@@ -28,7 +28,8 @@ http://docs.python.org/2/distutils/sourcedist.html
 
 """
 import os
-from setuptools import setup, find_packages
+# from setuptools import setup, find_packages
+from setuptools import setup
 import mailprotector as app
 
 
