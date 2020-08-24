@@ -1,5 +1,22 @@
 
+# own method
+version bump in mailprotector/__init__.py
+CHANGELOG!
 
+git commit -am'release 0.x.x'
+git tag 0.x.x
+git checkout main
+git merge develop
+git push --all; git push --tags
+git push upstream --all; git push upstream --tags
+
+python setup.py sdist
+python setup.py bdist_wheel --universal
+twine upload dist/* -r pypitest
+twine upload dist/* -r pypi
+
+
+# legacy
 git flow release start 0.1.
 version bump in mailprotector/__init__.py
 CHANGELOG!
