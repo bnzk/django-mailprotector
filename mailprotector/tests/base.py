@@ -17,11 +17,11 @@ class SeleniumBase(object):
     def test_tag_phone(self):
         self.open('/test/')
         # phone
-        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 22']")
-        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 23'][text()='phone-link-text']")
-        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 24'][@class='css-class-phone'][text()='css-class-phone']")
-        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 25'][@class='plain-text-phone'][text()='032 322 22 25']")
-        self.webdriver.find_element_by_xpath("//a[@href='tel:032 322 22 26'][@class=' html-text-phone'][text()='032 322 22 26 link text']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:0323222222']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:0323222223'][text()='phone-link-text']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:0323222224'][@class='css-class-phone'][text()='css-class-phone']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:0323222225'][@class='plain-text-phone'][text()='032 322 22 25']")
+        self.webdriver.find_element_by_xpath("//a[@href='tel:0323222226'][@class=' html-text-phone'][text()='032 322 22 26 link text']")
 
 
 class SimpleBase(object):
