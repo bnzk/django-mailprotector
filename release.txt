@@ -12,7 +12,6 @@ git push upstream --all; git push upstream --tags
 
 python setup.py sdist
 python setup.py bdist_wheel --universal
-twine upload dist/* -r pypitest
 twine upload dist/* -r pypi
 
 

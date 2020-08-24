@@ -3,6 +3,7 @@ include LICENSE
 include DESCRIPTION
 include CHANGELOG.txt
 include README.md
+include PYPI.rst
 include tox.ini
 include requirements.txt
 graft mailprotector

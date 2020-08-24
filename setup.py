@@ -57,7 +57,8 @@ setup(
     author='Ben Stähli',
     author_email='bnzk@bnzk.ch',
     url="https://github.com/bnzk/django-mailprotector",
-    packages=find_packages(),
+    # packages=find_packages(),
+    packages=['.'],
     include_package_data=True,
     install_requires=install_requires,
     extras_require={
