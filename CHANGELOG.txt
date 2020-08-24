@@ -5,6 +5,12 @@
 - add (re)captcha protection!
 
 
+=== 0.2.1 ===
+
+- remove whitespace in links, so tel: links can be display like +41 22 575 333 333, but work anyway
+- new release mode (no git-flow anymore), master is now main
+
+
 === 0.2.0 ===
 
 - MAILPROTECTOR_EMAIL_LINK_PATTERN and MAILPROTECTOR_PHONE_LINK_PATTERN are no more used,
