@@ -21,6 +21,7 @@ def protect(link, link_text, css_class, **attributes):
     # link_text = link_text.replace('.', ' . ')  # noqa
     link_text = link_text.replace('@', ' ( at ) ')
     link_array = ''
+    link = link.replace(' ', '')
     for c in link:
         link_array += "'%s', " % c
     attributes_html = ''

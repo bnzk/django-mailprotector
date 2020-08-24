@@ -16,12 +16,13 @@ def protect_phone(phone, link_text, css_class, **kwargs):
     return protect(href_start, phone, link_text, css_class, **kwargs)
 
 
-def protect(href_start, value, link_text, css_class, **kwargs):
+def protect(href_start, link, link_text, css_class, **kwargs):
     value_array_content = ''
     text_array_content = ''
     r = lambda c: '"' + str(ord(c)) + '",'  # noqa
 
-    for c in value:
+    link = link.replace(' ', '')
+    for c in link:
         value_array_content += r(c)
     for c in link_text:
         text_array_content += r(c)
