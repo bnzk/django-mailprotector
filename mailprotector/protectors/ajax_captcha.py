@@ -1,6 +1,7 @@
 import re
 import random
 
+from ..minifier import minify
 
 # originally based on http://djangosnippets.org/snippets/1284/
 
@@ -27,22 +28,22 @@ def protect(href_start, value, link_text, css_class, **kwargs):
     the_id = "_tyjsdfss-" + str(random.randint(1000, 999999999999999999))
 
     # omit document.write to make it ajax safe!
-    result = """<span id='{id}'></span><script language="javascript" type="text/javascript">
-        <!--
-        var _tyjsdf = [{value_array}], _qplmks = [{text_array}];
-        var content = ('<a class="{css_class}" href="{href_start}');
-        for(_i=0;_i<_tyjsdf.length;_i++){{ content += ('&#'+_tyjsdf[_i]+';');}}
-        content += ('">');
-        for(_i=0;_i<_qplmks.length;_i++){{ content += ('&#'+_qplmks[_i]+';');}}
-        content += ('</a>');
-        document.getElementById('{id}').innerHTML = content;
-        -->
-        </script>"""\
-    .format(
-        id=the_id,
-        href_start=href_start,
-        value_array=re.sub(r',$', '', value_array_content),
-        text_array=re.sub(r',$', '', text_array_content),
-        css_class=css_class,
-    )
-    return result
+    result = """
+        <span id='{id}'></span>
+        <script>
+            var _tyjsdf = [{value_array}], _qplmks = [{text_array}];
+            var content = ('<a class="{css_class}" href="{href_start}');
+            for(_i=0;_i<_tyjsdf.length;_i++){{ content += ('&#'+_tyjsdf[_i]+';');}}
+            content += ('">');
+            for(_i=0;_i<_qplmks.length;_i++){{ content += ('&#'+_qplmks[_i]+';');}}
+            content += ('</a>');
+            document.getElementById('{id}').innerHTML = content;
+        </script>
+        """.format(
+            id=the_id,
+            href_start=href_start,
+            value_array=re.sub(r',$', '', value_array_content),
+            text_array=re.sub(r',$', '', text_array_content),
+            css_class=css_class,
+        )
+    return minify(result)
