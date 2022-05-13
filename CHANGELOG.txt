@@ -5,6 +5,11 @@
 - add (re)captcha protection!
 
 
+=== 0.3.1 (2022-05-13) ===
+
+- add simple minifier to output. credits @wullerot
+
+
 === 0.3.0 (2022-05-13) ===
 
 - drop python2
