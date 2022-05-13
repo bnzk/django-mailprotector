@@ -1,9 +1,12 @@
+# based on http://djangosnippets.org/snippets/1284/
+
 import re
 import random
+
 from ..conf import settings
+from ..minifier import minify
 
 
-# based on http://djangosnippets.org/snippets/1284/
 
 def protect_email(email, link_text, css_class, **kwargs):
     # href_start = '&#x6d;&#97;&#105;&#x6c;&#000116;&#111;&#x3a;'
@@ -35,8 +38,7 @@ def protect(link, link_text, css_class, **attributes):
     )
     result = """
         <a href="javascript:{id}()" {attributes_html} class="{css_class}">{link_text}</a>
-        <script language="javascript" type="text/javascript">
-            <!--
+        <script>
             function {id} () {{
                 var value = '';
                 var _tyjsdf = [{value_array}];
@@ -44,13 +46,11 @@ def protect(link, link_text, css_class, **attributes):
                 window.location.href = value;
                 return true;
             }}
-            -->
-        </script>"""\
-    .format(
-        id=the_id,
-        value_array=re.sub(r',$', '', link_array),
-        link_text=link_text,
-        css_class=css_class,
-        attributes_html=attributes_html,
-    )
-    return result
+        </script>""".format(
+            id=the_id,
+            value_array=re.sub(r',$', '', link_array),
+            link_text=link_text,
+            css_class=css_class,
+            attributes_html=attributes_html,
+        )
+    return minify(result)
