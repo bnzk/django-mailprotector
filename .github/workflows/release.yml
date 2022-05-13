@@ -7,7 +7,7 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    if: github.repository == 'bnzk/django-mailprotector
+    if: github.repository == 'bnzk/django-mailprotector'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
