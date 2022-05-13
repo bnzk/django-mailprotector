@@ -53,7 +53,7 @@ setup(
     description=read('DESCRIPTION'),
     long_description=read('README.md'),
     long_description_content_type="text/markdown",
-    license='MIT License',
+    license='MIT',
     platforms=['OS Independent'],
     keywords='django, email, obfuscate',
     author='Ben Stähli',
