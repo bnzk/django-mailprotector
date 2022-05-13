@@ -5,6 +5,13 @@
 - add (re)captcha protection!
 
 
+=== 0.3.0 (2022-05-13) ===
+
+- drop python2!
+- switch to github actions
+- updated test matrix, django 2.2 - 4.0 officially supported
+
+
 === 0.2.1 ===
 
 - remove whitespace in links, so tel: links can be display like +41 22 575 333 333, but work anyway
