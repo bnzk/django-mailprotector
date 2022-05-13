@@ -2,6 +2,7 @@ import re
 import random
 
 from ..conf import settings
+from ..minifier import minify
 
 
 # based on http://djangosnippets.org/snippets/1284/
@@ -19,7 +20,7 @@ def protect_phone(phone, link_text, css_class, **kwargs):
 def protect(href_start, link, link_text, css_class, **kwargs):
     value_array_content = ''
     text_array_content = ''
-    r = lambda c: '"' + str(ord(c)) + '",'  # noqa
+    def r(c): return '"' + str(ord(c)) + '",'  # noqa
 
     link = link.replace(' ', '')
     for c in link:
@@ -33,22 +34,22 @@ def protect(href_start, link, link_text, css_class, **kwargs):
     )
 
     # omit document.write to make it ajax safe!
-    result = """<span id='{id}'></span><script language="javascript" type="text/javascript">
-        <!--
-        var _tyjsdf = [{value_array}], _qplmks = [{text_array}];
-        var content = ('<a class="{css_class}" href="{href_start}');
-        for(_i=0;_i<_tyjsdf.length;_i++){{ content += ('&#'+_tyjsdf[_i]+';');}}
-        content += ('">');
-        for(_i=0;_i<_qplmks.length;_i++){{ content += ('&#'+_qplmks[_i]+';');}}
-        content += ('</a>');
-        document.getElementById('{id}').innerHTML = content;
-        -->
-        </script>"""\
-    .format(
-        id=the_id,
-        href_start=href_start,
-        value_array=re.sub(r',$', '', value_array_content),
-        text_array=re.sub(r',$', '', text_array_content),
-        css_class=css_class,
-    )
-    return result
+    result = """
+        <span id='{id}'></span>
+        <script>
+            var _tyjsdf = [{value_array}], _qplmks = [{text_array}];
+            var content = ('<a class="{css_class}" href="{href_start}');
+            for(_i=0;_i<_tyjsdf.length;_i++){{ content += ('&#'+_tyjsdf[_i]+';');}}
+            content += ('">');
+            for(_i=0;_i<_qplmks.length;_i++){{ content += ('&#'+_qplmks[_i]+';');}}
+            content += ('</a>');
+            document.getElementById('{id}').innerHTML = content;
+        </script>
+        """.format(
+            id=the_id,
+            href_start=href_start,
+            value_array=re.sub(r',$', '', value_array_content),
+            text_array=re.sub(r',$', '', text_array_content),
+            css_class=css_class,
+        )
+    return minify(result)
