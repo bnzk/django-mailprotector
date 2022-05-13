@@ -1,11 +1,9 @@
 # based on http://djangosnippets.org/snippets/1284/
-
 import re
 import random
 
 from ..conf import settings
 from ..minifier import minify
-
 
 
 def protect_email(email, link_text, css_class, **kwargs):
@@ -46,11 +44,12 @@ def protect(link, link_text, css_class, **attributes):
                 window.location.href = value;
                 return true;
             }}
-        </script>""".format(
-            id=the_id,
-            value_array=re.sub(r',$', '', link_array),
-            link_text=link_text,
-            css_class=css_class,
-            attributes_html=attributes_html,
-        )
+        </script>
+    """.format(
+        id=the_id,
+        value_array=re.sub(r',$', '', link_array),
+        link_text=link_text,
+        css_class=css_class,
+        attributes_html=attributes_html,
+    )
     return minify(result)
