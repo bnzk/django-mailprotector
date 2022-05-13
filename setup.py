@@ -34,7 +34,7 @@ import mailprotector as app
 
 
 dev_requires = [
-    'flake8',
+    'tox',
 ]
 
 install_requires = open('requirements.txt').read().splitlines()
@@ -51,7 +51,8 @@ setup(
     name="django-mailprotector",
     version=app.__version__,
     description=read('DESCRIPTION'),
-    long_description=read('PYPI.rst'),
+    long_description=read('README.md'),
+    long_description_content_type="text/markdown",
     license='MIT License',
     platforms=['OS Independent'],
     keywords='django, email, obfuscate',
