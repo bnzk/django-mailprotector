@@ -1,9 +1,9 @@
 # Django Mailprotector
 
-[![Build Status](https://travis-ci.org/bnzk/django-mailprotector.svg?style=flat-square "Build Status")](https://travis-ci.org/bnzk/django-mailprotector/)
-[![CI](https://github.com/bnzk/django-mailprotector/actions/workflows/ci.yml/badge.svg)](https://github.com/bnzk/django-mailprotector/actions/workflows/ci.yml)
-[![Licence](https://img.shields.io/pypi/l/django-mailprotector.svg?style=flat-square "Licence")](https://pypi.python.org/pypi/django-mailprotector/)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/djangocms-misc?style=flat-square)
+[![CI](https://img.shields.io/github/workflow/status/bnzk/django-mailprotector/CI.svg?style=flat-square&logo=github)](https://pypi.python.org/pypi/django-mailprotector/)
+[![Version](https://img.shields.io/pypi/v/django-mailprotector.svg?style=flat-square "Licence")](https://pypi.python.org/pypi/django-mailprotector/)
+[![Licence](https://img.shields.io/github/license/bnzk/django-mailprotector.svg?style=flat-square "Licence")](https://pypi.python.org/pypi/django-mailprotector/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/djangocms-misc?style=flat-square)](https://pypistats.org/packages/django-mailprotector)
 
 A reusable Django app that protects email addresses and phone numbers, in various ways. Django 1.8+, no further dependencies.
 
